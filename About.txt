@@ -1,0 +1,8 @@
+This repo has the flutter codes from the fourth day of my Flutter training, 
+
+[2020-07-22] Day 4{
+	Learnt to add Icon
+	Learnt to add Images
+	Learnt to add Scaffold
+	Learnt to add AppBar
+}
