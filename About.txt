@@ -1,8 +1,19 @@
 This repo has the flutter codes from the fourth day of my Flutter training, 
 
 [2020-07-22] Day 4{
-	Learnt to add Icon
-	Learnt to add Images
-	Learnt to add Scaffold
-	Learnt to add AppBar
+	Learnt to add Icon,
+	Learnt to add Images,
+	Learnt to add Scaffold,
+	Learnt to add AppBar,
+	Session was concentrated on AppBar,
+	We can also remove the debug banner from app,
+}
+
+[2020-07-23] Day 5{
+	Session was concentrated on Body of our application,
+	Learnt about Container, Column and the difference b/w them,
+	Learnt about decoration property,
+	Learnt to style the border of Container,
+	Conatainer allows us to use only one child property,
+	Column has a list<widget> in which we can write children,
 }
