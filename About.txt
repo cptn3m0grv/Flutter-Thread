@@ -17,3 +17,17 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	Conatainer allows us to use only one child property,
 	Column has a list<widget> in which we can write children,
 }
+
+[2020-07-24] Day 6{
+	Session was concentrated on few core concepts of Flutter,
+	Learnt about Hot reloading,
+	Hot reloading is the best thing for any developer,
+	We need to enable hot reloading when we begin our code from scratch,
+	Hot reloading refreshes the update part in the code without completely running the code again,
+	This is done with the help of BuildContext and Stateless Widget,
+	We will be learning more about it in future,
+	Then we learnt about the concept of package (read the text file in day6 directory),
+	We imported some packages to change colour of status bar and also to write a toast(toast is nothing but a popup),
+	We then used these two packages to write a code and changed the colour of statusbar,
+	We also wrote a code for a toast using the imported package.
+}
