@@ -1,0 +1,75 @@
+day6
+############################################################################################################################################
+>>>>> main.dart
+import 'ui/home.dart';
+import 'package:flutter/material.dart';
+
+void main(){
+	runApp(myHotApp());
+}
+
+// This function is to enable the hot reloading by asking the flutter to maintain state for hot reloading
+// This function is available in material.dart package
+// statelessWidget is a class so we need to inherit it
+
+class myHotApp extends StatelessWidget{
+	build(BuildContext context){
+	// We want this to run our app
+		return MyApp();
+	}
+}
+
+############################################################################################################################################
+
+>>>>> Got to pubsec.yaml   --> dependecies
+add this line
+    flutter_statusbarcolor: ^0.2.3
+	fluttertoast: ^7.0.1
+
+//will automatically install the package in IDE if not do the following
+after adding this run the following command
+   > flutter pub get
+   
+   Restart the IDE
+
+############################################################################################################################################
+
+>>>>> ui/home.dart
+import 'package:flutter/material.dart';
+// search for status in pub.dev and download flutter_statusbarcolor
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+MyApp(){
+
+    FlutterStatusbarcolor.setStatusBarColor(Colors.amber);
+
+	lw(){		
+		FlutterToast.showToast(
+			msg: "this is the message",
+			toastLength: Toast.LENGTH_SHORT,
+			gravity: ToastGraviy.CENTER,
+			timeInSecForIosWeb: 3,
+			backgroundColor: Colors.red,
+			textColor: Colors.white,
+			fontSize: 16.0
+		);
+	}
+
+	return MaterialApp(
+		home: Scaffold(
+			appBar: AppBar(
+				backgroundColor: Colors.red,
+				title: Text('LW'),
+				actions: <Widget>[
+					IconButton(
+						icon: Icon(Icons.email),
+						onPressed: lw,
+					),
+				],
+			),
+		),
+	);
+	
+}
+############################################################################################################################################
