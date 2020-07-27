@@ -31,3 +31,17 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	We then used these two packages to write a code and changed the colour of statusbar,
 	We also wrote a code for a toast using the imported package.
 }
+
+[2020-07-27] Day 7{
+	Session was concentrated on creating a custom layout,
+	We used te concepts of Container and Column to create one,
+	We first understood the concept of margin and padding and how they are different,
+	Although we can create a container inside a container but there is no practical use case of it,
+	Container can only have one child and there is no use of it,
+	We can use a Column inside a Container which can then have multiple children,
+	As the name suggests Column arranges the widgets in the form of column,
+	We also have a property for Row and also a Stack widget which helps in overlapping of widget,
+	Since there are no features of negative margins thus flutter provides us with the feature of Stack,
+	Learnt about the InkWell and GestureDetector feature also and how they are different,
+	Learnt few more terminologies of flutter including EdgeInsets etc,
+}
