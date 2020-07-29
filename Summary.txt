@@ -45,3 +45,18 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	Learnt about the InkWell and GestureDetector feature also and how they are different,
 	Learnt few more terminologies of flutter including EdgeInsets etc,
 }
+
+[2020-07-29] Day 8{
+	Session was more focused on the backend,
+	We learnt to integrate our mobile app with linux server using http protocol,
+	We learnt about the status code of a webapp,
+	Learnt about the request method while estabilishing a connection with a webserver,
+	Used this concept to execute a python script on our webserver by just pressing a button,
+	This was done using http protocol and thus had to install http package and update our pubsec file,
+	Learnt the concept of RaisedButton and added an action listener to it,
+	The action listener prints the date and time of linux server on our console,
+	Learnt about the concept of cgi (common gateway interface) and how we can use cgi-bind directory to execute python script,
+	This method is very powerful to execute any command on our linux server through our mobile application,
+	While dealing with http package we were also introduced to the async and await keyword.
+}
+
