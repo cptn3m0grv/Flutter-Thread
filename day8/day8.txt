@@ -1,0 +1,115 @@
+day8 notes
+
+#########################################################################################################################################
+
+We need to install http webserver on linux machine, in my case RHEL8
+
+use the following commands followed by '$' symbol
+
+$ yum install -y httpd
+$ systemctl start httpd
+$ systemctl enable httpd
+$ vim /var/www/html/home.html
+  This is the home page   //(this line should be in home html file)
+ 
+$ ifconfig //to get the ip
+
+$ vim /var/www/cgi-bin/date.py
+	#!/usr/bin/python3
+	import subprocess
+	
+	print("content-type: text/html")
+	print()
+	print("my python")
+	da = subprocess.getoutput("date")
+	print(da)  // to run os commands in python
+	// We can also run ansible command using this method
+	
+$ vim /var/www/cgi-bin/cal.py
+	#!/usr/bin/python3
+	import subprocess
+	
+	ca = subprocess.getoutput("cal")
+    print(ca)
+
+	
+$ chmod +x date.py	
+$ chmod +x cal.py
+	
+(Also check connectivity from you phone to this ip using ping)
+flutter app will work as web client in our case, also we will be sending a GET request
+
+curl -i <web-sever-ip> //this command is to get the http header
+
+flutter app should have the capability to send a request
+go to pub.dev to download a http API package.
+
+#########################################################################################################################################
+changes to be made in pubsec.yaml file
+
+under dependencies,
+    http: ^0.12.2it
+
+#########################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> main.dart <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+import 'package:flutter/material.dart'
+import 'packege:http/http.dart' as http;
+
+main(){
+	runApp(MyApp);
+}
+
+mydata() async {
+	//print("Pressed...."); // this line is for testing, we actually want this button to connect us to the linux server.
+	//var url = 'http://<IP OF SERVER>/page.html'
+	var url = 'http://<IP OF SERVER>/cgi-bin/date.py'// to run a python code from mobile 
+	var response = await http.get(url); //server will send header and body with Future datatype --> async (will be explained in later sessions)
+	var statCode = response.statusCode;
+	var data = response.body;
+	print(statCode);
+	print(data);
+}
+
+anofunct() async {
+	var url = 'http://<IP OF SERVER>/cgi-bin/cal.py';
+	var response = await http.get(url);
+	vat data = response.body;
+	print(data);
+}
+
+mybody(){
+	
+	return Column(
+		children: <Widget>[
+			RaisedButton(
+				onPresssed: mydate,
+				child: Text("Click Me"),
+			),
+			RaisedButton(
+				onPresssed: anofunct,
+				child: Text("Another function"),
+			),
+		],
+	);
+}
+
+class MyApp extends StatelessWidget {
+	@override
+	Widget build(BuildContext context) {
+		return MaterialApp(
+			home: Scaffold(
+				appBar: AppBar(
+					title: Text('Web App'),
+				),
+				body: mybody(),
+			),
+		);
+	}
+}
+#########################################################################################################################################
+
+UI is simple because today's focus is on backend.
+We will be integrating flutter in such a way, that by just one click it prints the date in terminal of Linux Terminal.
+
+#########################################################################################################################################
