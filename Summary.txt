@@ -60,3 +60,14 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	While dealing with http package we were also introduced to the async and await keyword.
 }
 
+[2020-07-30] Day 9{
+	Learnt about few more core concepts of dart programming language,
+	Learnt about functional programming and rules to implement functional programming,
+	Played with dart functions and understood the concepts of positional arguments and named arguments,
+	Also learnt about the methods of string interpolation in dart,
+	Learnt about the Function keyword,
+	Learnt about lambda expression in dart denoted by ( => ) symbol,
+	Lambda is one of the rules to implements functional programming out of several others,
+	Learnt about another rule of functional programming that goes by the name, higher order functions,
+	Learnt how these concepts can make our flutter code shorter and easy to read while debugging.
+}
