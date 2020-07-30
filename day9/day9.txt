@@ -1,0 +1,120 @@
+day9
+#########################################################################################################################################
+
+this session will be on some core concepts of dart programming language and thus a backbone of any flutter applicatiom.
+
+#########################################################################################################################################
+>>>>>>>>>>>>>>>>>  main.dart <<<<<<<<<<<<<<<<<<<<<<
+import 'package:flutter/material.dart';
+
+main(){
+	runApp(MyApp());
+}
+// the main function can also be written as follows:
+// main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+	@override
+	Widget build(BuildContext context){
+		return MaterialApp(
+			home: Scaffold(
+				backgroundColor: Colors.grey,
+				appBar: AppBar(
+					title: Text("DAY 9"),
+				),
+				body: RaisedButton(
+					onPressed: () {
+						print("hello");
+						print("hi");
+					},
+				),
+			),
+		);
+	}
+}
+
+#########################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>>>> basic.dart <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//// Independent Dart File
+
+
+main(){
+	print("hi");
+	lw("jack", "IN");
+	lw("pop", "US");
+	var x =  grv("gaurav");
+	print(x);
+	print(x.runtimeType);
+
+lw(String name, String country){ //we can also give datatype to the variable
+//eg lw(String name, String country){}
+	print("Hello $name from: $country");
+	print(name.length); //to print the length of the string
+	print(country.length);
+	print("Length of $name is ${name.length}");
+	
+}
+
+int grv(String name){ //so that it only returns int 
+	return name.length;
+}
+
+>>>>>>>>>>>>>>>>>>>>
+
+Default arguments
+func(String name, String country="IN"){} // if no argument is passed to country then by default India will be selected
+
+<<<<<<<<<<<<<<<<<<<<<
+
+>>>>>>>>>>>>>>>>>>>>>
+using positional arguments is not mandatory, functions are flexible
+//this concept is known as named parameters
+	
+grv({String name, String country}){
+	func body
+}
+
+
+// calling functions
+
+grv(
+	country: "IN",
+	name: "Gaurav"
+);
+
+<<<<<<<<<<<<<<<<<<<<<<<
+
+>>>>>>>>>>>>>>>>>>>>>>
+lambda = nameless = anonymous functions
+//this approach is also known as functional programming
+// there are certain rules of functional programming
+
+void main(){
+	var h = (a, b) => a + b - 1;
+	Function p = () => print('hi'); //Function is also a datatype
+	print(h(2, 3));
+	p();
+}
+
+// . => this symbol is known as lambda expression
+<<<<<<<<<<<<<<<<<<<<<<
+
+#########################################################################################################################################
+>>>>>>>>>>>>>>>> higher.dart <<<<<<<<<<<<<<<<<<<<
+
+main(){
+	Function myfunction = (word) => word.length;
+	
+	mylen(word: "Gaurav", myfunc: myfunction);
+}
+
+mylen({String word, Function myfunc}) {
+	print(word);
+	print(myfunc(word));
+}
+
+Output: 
+Gaurav
+6
+
+#########################################################################################################################################
