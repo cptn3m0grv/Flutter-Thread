@@ -1,0 +1,90 @@
+day10
+##############################################################################################################################################
+assets in flutter
+Card widget in flutter, is like a container with pre-created designs, takes size of the child only
+We cannot define the height or width of the child although we can place it inside a Container.
+Recommended for placing images like data.
+##############################################################################################################################################
+
+Create a folder (not inside the lib folder) by any name and place imahes into it, this is to create assets for our application,
+
+assets are something that is bundled with the app so that a user can even access it offline
+
+we can also attach an audio in our app 
+	pub.dev --> audioplayers 98% popularity
+
+And then make changes to our pubsec file
+
+Create a assets(name should be same) folder for audio as well and update in audio
+many extensions are availaible 
+
+RESTART THE IDE
+##############################################################################################################################################
+
+we need to make changes in pubsec file if while using assets
+assets are commented by default
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	assets:
+	  -  images/photo.jpeg (no need to mention path if we want to include all the files
+	  -  assets/audio.wav
+	  
+	dependencies:
+	  flutter:
+	    audioplayers: ^0.15.1
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>> main.dart <<<<<<<<<<<<<<<<<<<<<<<
+import 'package:flutter/material.dart';
+import 'package: audioplayers/audio_cache.dart';
+
+void main() => runApp(app);
+
+class MyApp extends StatelessWidget{
+	@override
+	Widget build(BuildContext context) {
+		return MaterialApp(
+			home: Scaffold(
+				appBar: AppBar(
+					title: Text('LW'),
+				),
+				body: Column(
+				// all the children are centrailized in a column because bydefault value of Alignement is center
+					//mainAxisAlignment: MainAxisAlignment.start, //this is by default
+					//crossAxisAlignment: CrossAxisAlignment.center //this is by deafult though can be changed
+					//default mainAxis and crossAxis value for a row is same as that of column 
+					// use .stretch to use the space on the whole screen
+					children: <Widget>[
+						Container(
+							width: 200,
+							height: 100,
+							Card(
+								color: Colors.red,
+								//child: Text('first'),
+								elevation: 5, // to lift up the shadow area in (px)
+								child: Image.asset(loc/pic.jpeg),
+							),
+						),
+						Container(
+							width: 100,
+							height: 50,
+							child:  RaisedButton(
+								onPressed: (){
+									print("HI");
+									var aud = AudioCache();
+									aud.play('assets/audio.wav');
+								},
+								child: Card(
+									color: Colors.green,
+									child: Text('PLAY'),
+									elevator: 5,
+								),
+							),
+						),
+					],
+				);
+			),
+		);
+	}
+}
+
+##############################################################################################################################################
