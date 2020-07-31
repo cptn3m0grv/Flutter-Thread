@@ -71,3 +71,17 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	Learnt about another rule of functional programming that goes by the name, higher order functions,
 	Learnt how these concepts can make our flutter code shorter and easy to read while debugging.
 }
+
+[2020-07-31] Day 10{
+	In this session we learnt about card widget and assets,
+	Card provides us with some basic decoration like rounded border and shadow,
+	We can also alter the elevation of card but cannot change height or width of card,
+	Card takes the size as that of its child,
+	We can use card inside a container to change it's size and much more,
+	Learnt about the alignment and the default alignments of Column and Row,
+	There are two type of alignment, they are mainAxisAlignment and crossAxisAlignment,
+	Assets are images or audio or video files that are stored locally in our system and we want to bind them with  our app,
+	We can also access our images and audios even without the internet connectivity,
+	We need to make changes into our pubspec.yaml file to access assets,
+	Learnt to embed audio and image assets in our application.
+}
