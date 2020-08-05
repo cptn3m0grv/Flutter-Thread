@@ -85,3 +85,16 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	We need to make changes into our pubspec.yaml file to access assets,
 	Learnt to embed audio and image assets in our application.
 }
+
+[2020-08-05] Day 11{
+	In this session we learnt to take user input through out application,
+	This can be done using TextField() Widget in Flutter,
+	TextField() widget provide us multiple features,
+	We can set our hintText and helperText etc,
+	We can also customize widget decoration in TextField too,
+	We can customize almost everything in TextField() Widget,
+	It has onChanged key which allows us to write an event to perform,
+	We took input from user and run that linux command in our linux server,
+	This can be done using the technique learnt on day8,
+	We created python script in our linux server which we can run through the application and print the output in the console terminal,
+}
