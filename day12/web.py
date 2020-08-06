@@ -9,13 +9,14 @@ import subprocess
 # Also run the following command if you are using RHEL7 or RHEL8
 # setenforce 0
 
-print("Content-Type: text/html")
-print()
-
 myData = cgi.FieldStorage()
-myimage = myData.getValue("i")
-myos = myData.getValue("o")
-
+myimage = myData.getvalue("i")
+myos = myData.getvalue("o")
 myCommand = "docker run -dit --name {} {}".format(myos, myimage)
 
-print(subprocess.getOutput(myCommand))
+print("Content-Type:text/html")
+print()
+print()
+
+print(subprocess.getoutput("sudo " + myCommand))
+print("Successful !!!")
