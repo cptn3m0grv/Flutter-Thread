@@ -1,0 +1,114 @@
+day12
+############################################################################################################################################
+Session notes, basically to integrate flutter with docker using a backend language, in this case we will be using python3
+
+############################################################################################################################################
+>>>>>>>>>> pubspec.yaml <<<<<<<<<<<<<
+
+dependencies:
+	http: ^0.12.2
+
+############################################################################################################################################
+>>>>>>>>>>>>>>>     main.dart    <<<<<<<<<<<<<<<<<<<<<
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+void main() => runApp(MyTechApp());
+
+void web(String cmd) async{
+	var url = "http://IP/cgi-bin/docker.py?command=${cmd}";
+	var response = await http.get(url);
+	print(response.body);
+}
+
+class MyTechApp extends StatelessWidget{
+
+	String command;
+	
+	@override
+	Widget build(BuildContext context){
+		return MaterialApp(
+			home: Scaffold(
+				appBar: AppBar(
+					title: Text("Tech App"),
+				),
+				body: Center(
+					child: Container(
+						width: 300,
+						height: 300,
+						color: Colors.grey,
+						child: Column(
+							children: <widget>[
+								TextField(
+									onChanged: (value) {
+										command = value;
+									},
+									autocorrect: false,
+									textAlign: TextAlign.center,
+									decoration: InputDecoration(
+										border: OutlineInputBorder(),
+										hintText: "Command Here",
+										prefixIcon: Icon(Icons.tablet_android),
+									)
+								),
+								FlatButton(
+									onPressed: () {
+										print(command);
+										web(command);
+									},
+									child: Text("Click"),
+								),
+							],
+						),
+					),
+				),
+			),
+		);
+	}
+}
+
+############################################################################################################################################
+Launch a Linux OS with docker installed and its service started
+
+# systemctl start docker
+# setenforce 0
+# getenforce
+# docker ps -a
+# docker run -dit --name OS1 <image>
+# yum install httpd
+# systemctl start httpd   (Webserver configured)
+# vim /var/www/cgi-bin/docker.py
+>>>>>> Python script (Server side / Backend)
+  
+  #!/usr/bin/python3
+  import cgi
+  import subprocess
+  
+  print("content-type: text/html")
+  print()
+  
+  myData = cgi.FieldStorage() 
+  myCommand = myData.getValue("command")
+  
+  print(myCommand)
+  print(subprocess.getoutput("sudo " + myCommand))
+  
+<<<<<<    
+
+# chmod +x /var/www/cgi-bin/docker.py
+# curl -X GET http://IP/cgi-bin/docker.py?x=gaurav
+  ---> will print gaurav for us
+  ---> this variable has to be decided within the python script
+  
+>>>> Changing permission
+# vim /etc/sudoers (LINE 102)
+>>> add this line
+  apache ALL=(ALL) ALL NOPASSWD: ALL
+<<<
+
+without the above step, our flutter app will not have any power to run all the commands
+We will provide all these features in our mobile application. 
+
+############################################################################################################################################
+
+We can customize it according to our wish.
