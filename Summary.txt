@@ -98,3 +98,20 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	This can be done using the technique learnt on day8,
 	We created python script in our linux server which we can run through the application and print the output in the console terminal,
 }
+
+[2020-08-06] Day 12{
+	In this session we learnt to integrate docker with our flutter application,
+	Basically we learnt some more concepts about http and cgi-bin,
+	We learnt to pass variables in the URL to retrieve some information,
+	We used GET method frpm HTTP protocol in this scenario,
+	We can pass any variable through URL using '?' symbol,
+	Example: http://IP/cgi-bin/script.py?var1=val1&var2=val2,
+	We then learnt to retrieve these information within our python script,
+	We have to 'import cgi' in our python file and cgi.FieldStorage().getValue('var'),
+	This is the basic syntax to retrieve variables that we pass through our URL,
+	We basically used this to pass docker commands from our application but doing this is not enough,
+	By default our apache webserver do not have permissions to make these changes,
+	Thus we made all this a bit more permissive using the basic knowledge of linux,
+	*****( I will be attaching the python script in day12 folder and also do refer notes for better understanding)*****
+}
+
