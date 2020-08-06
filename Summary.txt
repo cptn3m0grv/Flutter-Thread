@@ -1,4 +1,5 @@
 This repo has the flutter codes from the fourth day of my Flutter training, 
+**********  IGNORE THE TYPOS PLEASE ***********************
 
 [2020-07-22] Day 4{
 	Learnt to add Icon,
