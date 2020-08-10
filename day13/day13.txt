@@ -1,0 +1,99 @@
+day13
+##############################################################################################################################################
+
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>>    main.dart <<<<<<<<<<<<<<<<<<<<<<
+import 'package:flutter/main.dart';
+
+void main(){
+	runApp(MyGPSApp());
+}
+
+class MyGPSApp extends StatelessWidget{
+	@override
+	Widget build(BuildContext context){
+		return MaterialApp(
+			home: Scaffold(
+				appBar: AppBar(
+					title: Text("GPS APP"),
+				),
+				body: Text("BODY"),
+			),
+		);
+	}
+}
+
+##############################################################################################################################################
+>>>>>>>>>>>>    a.dart  <<<<<<<<<<<<<
+
+void main(){
+	alltask();
+}
+
+alltask() async{
+	task1();
+	var d2 = await task2();
+	task3(d2);
+	task4();
+}
+
+task1(){
+	print("my first task is done.....");
+}
+
+task2() async{ //writing Future before task2 is optional, since it is added by default with the usage of async.
+	duration = Duration(seconds: 15);
+	var result;
+	//sleep(duration); 
+	// sleep doesnot support future datatype
+	await Future.delayed(duration, (){
+		result = 'url';
+		print("url to download image");
+	});
+	print("url to download image");
+	return result;
+}
+
+task3(String d){
+	print("created a button ${d2}");
+}
+
+task4(){
+	print("task 4 ");
+}
+
+---> dart a.dart
+if this code runs with synchronize method then we will see a pause of 5 seconds while running task2() and after that only we wll be able to see the exexcution of task3();
+
+but if we use Future keyword, then we will be able to run the task3() without the completion of task2();
+
+"await" keyword can only be used with a asynchronized function.
+
+##############################################################################################################################################
+>>>>>>>>>>> b.dart <<<<<<<<<<<<<<
+
+import 'package:http/http.dart as http';
+
+main(){
+	alltask();
+}
+alltask(){
+	task1();
+	task2();
+	task3();
+}
+task1(){
+	print("something");
+}
+task2() async{
+	var url = "http://IP/cgi-bin/date.py";
+	var r = await http.get(url);
+	print(r.body);
+}
+// if we run task 2 without async and await then we get output as instance of future<Response>
+task3(){
+	print("nothing");
+}
+
+
+##############################################################################################################################################
