@@ -116,3 +116,15 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	*****( I will be attaching the python script in day12 folder and also do refer notes for better understanding)*****
 }
 
+[2020-08-10] Day 13{
+	In this session we learnt about Future datatype and some more concepts of dart,
+	This session was to study more about dart programming language and we learnt how and when we can apply the concept of Future datatype in out flutter application,
+	We first learnt about the concept of synchronization in any programming language and when we don't need it,
+	Usually all the programming languages use synchronization by default - i.e to run the program in a sequence,
+	Suppose if 3 functions are called in main() then all of them will run in the order they are written,
+	But if some function is taking too long then we might need to run the next function,
+	This is where we use the 'async' and 'await' keyword,
+	We can either create a Future function or use any of these two keywords,
+	We have to use 'async' with 'await' and by default the function is Future Instance,
+	We then revised the concept of day8 and understood the working of http package,
+}
