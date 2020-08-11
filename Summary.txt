@@ -128,3 +128,18 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	We have to use 'async' with 'await' and by default the function is Future Instance,
 	We then revised the concept of day8 and understood the working of http package,
 }
+
+[2020-08-11] Day 14{
+	In this session we learnt the basics of Stateful Widget,
+	First we learnt the features which are not provided by Stateless Widget,
+	Stateless Widget are immutable and cannot be changed at runtime,
+	build() function is the one responsible to create the Widget tree and is immutable in the case of Stateless Wisget,
+	Stateful Widget are mutable - i.e they can be changed at runtime,
+	We then applied this concept and built an application,
+	This app takes command as input from user(TextField),
+	We then setup a linux server and used http package in flutter to run command in this OS,
+	The ouput of this command is then printed on the application,
+	This is only possible if we use StatefulWidget,
+	We also learnt some basics of dart programming language - ' ?? ' operator,
+	Example: print(variable ?? "Hello") this code will print "Hello" only if the variable is not defined or is null,
+}
