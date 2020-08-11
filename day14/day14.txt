@@ -1,0 +1,142 @@
+Day 14
+
+Stateful and Stateless
+
+##############################################################################################################################################
+>>>>>> pubspec.yml <<<
+dependencied:
+	http: ^0.12.2
+
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>    main.dart <<<<<<<<<<<<<<<<<<
+import 'package:flutter/material.dart';
+
+void main() => runApp(MaterialApp(
+	home: MyApp(),
+));
+
+class MyApp extends StatelessWidget{
+	var db = ["vimal", "jack", "krish"];
+	var index = 0;
+	lwclick(){
+		index += 1;
+		print("clicked....");
+		print(index);
+	}
+	
+	@override
+	Widget build(BuildContext context){
+		return Scaffold(
+			appBar: AppBar(
+				title: Text("Day14 State"),
+			),
+			body: Center(
+				child: Container(
+					width: MediaQuery.of(context).size.width * 0.8, //  50% of screen  
+					height: MediaQuery.of(context).size.height * 0.4,
+					color: Colors.transparent,
+					child: Column(
+						children: <Widget>[
+							Text(db[index]),
+							FlatButton(
+								onPressed: lwclick,
+								child: Text("Click Here"),
+							),
+						],
+					),
+				),
+			),
+		);
+	}
+}
+
+// The above code will not change aything since it is using StatelessWidget, to change an app at runtime we shall use StatefulWidget.
+
+Let's look at the same code with Stateful Widget
+#############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>   main.dart <<<<<<<<<<<<<
+import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+
+main() => (runApp(MyApp()));
+
+class MyApp extends StatefulWidget{
+	@override
+	_MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp>{
+	var cmd;
+	var webdata;
+	var db = ["vimal", "jack", "krish"];
+	var index = 0;
+	lwclick(){
+		
+		setState((){
+			index += 1;
+		});
+		
+		print("clicked....");
+		print(index);
+	}
+	
+	myweb(String com) async{
+		var url = "http://ip/cgi-bin/web.py?x=$com";
+		var r = await http.get(url);
+		
+		setState((){
+			webdata = r.body;
+		});
+		
+		print(webdata);
+	}
+	
+	@override
+	Widget build(BuildContext context){
+		return Scaffold(
+			appBar: AppBar(
+				title: Text("Day14 State"),
+			),
+			body: Center(
+				child: Container(
+					width: MediaQuery.of(context).size.width * 0.8, //  50% of screen  
+					height: MediaQuery.of(context).size.height * 0.4,
+					color: Colors.transparent,
+					child: Column(
+						children: <Widget>[
+							Text("Enter you linux command"),
+							TextField(
+								onChanged: (value) {
+									cmd = value;
+								},
+							),
+							FlatButton(
+								onPressed: () {
+									//lwclick();
+									myweb(cmd);
+								},
+								child: Text("Click Here"),
+							),
+							Text(webdata ?? "Welcome"); //will print welcome only if the webdata is null
+						],
+					),
+				),
+			),
+		);
+	}
+}
+
+#############################################################################################################################################
+>>>>>>>>>>>>    web.py <<<<<<<<<<<<<<<<<<<<
+#!/usr/python3
+import cgi
+
+print("Content-Type: text/html")
+print()
+print()
+
+myData = cgi.FieldStorage()
+myValue = myData.getvalue('x')
+
+print(subprocess.getoutput("sudo " + myValue)
+#############################################################################################################################################
