@@ -16,7 +16,7 @@ String input;
 
 class _MyAppState extends State<MyApp>{
   exec() async{
-    var url = "http://192.168.10.11/cgi-bin/state.py?$input";   
+    var url = "http://192.168.10.11/cgi-bin/state.py?cmd=$input";   
     var response = await http.get(url);
     var statecode = response.statusCode;
     var body = response.body;
