@@ -1,0 +1,109 @@
+day 16 
+
+##############################################################################################################################################
+>> flutter creare day16_json_app
+
+##############################################################################################################################################
+API stands for Application Programming Interface , it gives an interface to the user to use the backend service. It cannot be written in any programming language. Until now we have used python as our API language
+
+"http" is the API in this case.
+
+
+JSON is the language used for information sharing between clients and server.
+    ---> jsonformatter.org/json-viewer
+	
+everything in json has to be in {} blocks.
+example: 
+{
+	"name": "John Doe",
+	"phone": 12345,
+	"gender": male
+}
+
+client has to parse the json code/decode it accordingly
+linux has an in built json parser
+# yum install jq
+# jq . file.json --> retrieves the top level block
+# jq .name file.json   --> retrieves the name from json file
+
+python has a module to convert anything in json format 
+
+import json
+db = {"name":"john", "mob":1234}
+json.dumps(db)
+
+dictionary in python is converted into JSON format.
+
+Search for "Open Weather API"
+   ---> openweathermap.org/api
+   
+   Read Docs of any service you want, all the services are not free
+
+##############################################################################################################################################
+>>>>>>>>>>   pubspec.yaml  <<<<<<<<<<<
+dependencies:
+	http: ^0.12.2
+	
+##############################################################################################################################################
+>>>>>>>>>>>>>>>   main.dart   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+void main(){
+	runApp(MyApp());
+}
+
+myweb() async{
+	var url = "http://192.168.0.162/cgi-bin/web.py?x=date";
+	var r = await http.get(url);
+	var data = r.body;
+	
+	var final_data = jsonDecode(data);
+	print(final_data.runtimeType); 
+	print(final_data['output']);
+	
+}
+
+class MyApp extends StatelessWidget{
+	@override
+	Widget BuildContext(build context){
+		return MaterialApp(
+			home: Scaffold(
+				appBar: AppBar(
+					title: Text("Day 16"),
+				),
+				body: FlatButton(
+					child: Text("Click Here"),
+					onPressed: myweb,
+				),
+			);
+		);
+	}	
+}
+##############################################################################################################################################
+>>>>>>>>>    web.py   <<<<<<<<
+
+#!/usr/bin/python3
+import json
+import cgi
+import subprocess
+
+myData = cgi.FieldStorage()
+myCommand = myData.getvalue("x")
+
+print('Content-Type:text/html')
+print()
+
+output = subprocess.getstatusoutput("sudo " + myCommand)
+
+status = output[0]
+out = output[1]
+
+db = { 'status': status, 'output': out}
+
+out_json = json.dumps(db)
+
+print(out_json)
+
+##############################################################################################################################################
