@@ -148,3 +148,18 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	This session was not a technical session,
 	It was related to the startup groups and other discussion
 }
+
+[2020-08-14] Day 16{
+	In this session we learnt about API and JSON,
+	API stands for Application Programming Interface and it defines an interface to the users,
+	It defines interactions between multiple softwares and intermediates,
+	We have already dealt with APIs and it can be written in any programming language,
+	In our case we used python to write APIs,
+	JSON is the format to share information, 
+	Most APIs use JSON format to share data from server to client,
+	We also learnt to decode JSON files using json parsers,
+	There is a default parser in RHEL linux known as "jq",
+	Everything written in JSON is in between {} blocks,
+	We then learnt to use APIs in our application,
+	We used Openweather API to get weather details in our application,
+}
