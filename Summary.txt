@@ -143,3 +143,8 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	We also learnt some basics of dart programming language - ' ?? ' operator,
 	Example: print(variable ?? "Hello") this code will print "Hello" only if the variable is not defined or is null,
 }
+
+[2020-08-13] Day 15{
+	This session was not a technical session,
+	It was related to the startup groups and other discussion
+}
