@@ -1,0 +1,100 @@
+Day 17
+
+##############################################################################################################################################
+Integrating google maps, and using GPS sensor in our mobile application
+
+FloatingActionButton is one type of button.
+
+We can also apply dark theme instead of the light theme that comes by deafult. Though we can also create our own theme and use it.
+
+Google has its own server to provide google map to us, we would like to integrate its service in our app. Thus, it has API for almost everything, be it Google Drive or Google Maps. These APIs provide us with the services. Authentication is must to use API.
+
+We need to login to our google account and then get an API key, for this we need to create an GCP account.
+
+go to "cloud.google.com", go to console
+--> Create a project, name it (now go to this project)
+--> Go to menu and select API services --> Credentials --> cReate credentials 
+we then go to library, and search for service we want to use, we shall want to use mobile App 
+
+
+go to pub.dev and search for google maps packages
+  --> select google_maps_flutter with 99% popularity
+ 
+we need to put our API key in Manifest.xml file
+
+initialCameraPosition takes the initial co-odnites to begin with the map
+
+now go to pub.dev and search for geolocator (99% popularity), to get the current location of phone using gps sensor
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>   pubspec.yaml      <<<<<<<<<<<<<<<<<<<<
+dependencies:
+	flutter:
+		google_maps_flutter: ^0.5.30
+		geolocator: ^5.3.2+2
+		
+##############################################################################################################################################
+>>>>>>>>>>>>  AndroidManifest.xml   <<<<<<<<<<<<
+
+<manifest...
+	<application...
+line 15		<meta-data android:name="com.google.android.geo.API_KEY"
+				   android:value="YOUR KEY HERE"/>
+				   
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>       main.dart    <<<<<<<<<<<<<<<<<<<<<<<
+
+import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:geolocator/geolocator.dart';
+
+void main(){
+	runApp(
+		MaterialApp(
+			home: MyApp(),
+			theme: ThemeData.dark(),
+		)
+	);
+}
+
+class MyApp extends StatefulWidget{
+	@override
+	_MyApp createState() => _MyApp();
+}
+
+class _MyApp extends State<MyApp>{
+	var p;
+	
+	lw() async{
+		p = await Geolocator().getCurrentPosition(
+			desiredAccuracy: LocationAccuracy.high
+		);
+		print(p);
+	}
+
+	@override
+	Widget build(BuildContext context){
+		
+		var cp = CameraPosition(
+			target: LatLng(p.latitude ?? '24.454', p.longitude ?? '78.3443'), //we can also detect our current pos usign GPS
+			zoom: 10, //this is zoom level
+			tilt: 90, //degree tilt
+			// "bearing" is used to change direction of map
+		);
+		
+		return Scaffold(
+			appBar: AppBar(
+				title: Text("Day 17 GPS"),
+			),
+			body: GoogleMap(
+				initialCameraPosition: cp,
+				mapType: MapType.satellite,
+				// there are multiple features in this function
+			),
+			floatingActionButton: FloatingActionButton(
+				onPressed: lw,
+				child: Icon(Icons.add),
+			),
+		);
+	}
+}
+##############################################################################################################################################
