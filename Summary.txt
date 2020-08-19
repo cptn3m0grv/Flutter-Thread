@@ -163,3 +163,16 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	We then learnt to use APIs in our application,
 	We used Openweather API to get weather details in our application,
 }
+
+[2020-08-18] Day 17{
+	In this session we learnt about integrating google maps with android app and using phone gps sensor,
+	We also used to a floatingactionbutton as an event listener,
+	This button call the getLocation() function,
+	We also leant to change the default theme of our mobile application to dark theme though we can also create our own custom theme,
+	We then learnt the way to integrate google maps in our app,
+	There are a few pre-requisites to do so - we shall have a Google Cloud Platform account and an google API key,
+	We shall also use the google_maps_flutter package,
+	To add the API key - we shall add the API key in AndroidManifest.xml file,
+	We shall then add a geolocator package in order to use GPS sensor of our phone,
+	Using the geolocator package we shall get our location first and then show that location on map
+}
