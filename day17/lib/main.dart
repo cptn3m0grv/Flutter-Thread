@@ -1,7 +1,7 @@
 // In this application I have not implemented google maps because I do not have any google API as of now
 // but i will be update this code accordingly as soon as I get it
 // This code will get the current location --> latitude, longitude, altitude and accuracy on a press of a button.
-// *** https://github.com/cptn30grv  ******
+// *** https://github.com/cptn3m0grv  ******
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
