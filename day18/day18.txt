@@ -1,0 +1,85 @@
+Day 18
+
+##############################################################################################################################################
+Object Oriented Programming in Dart.
+
+class is a block of code which has few properties and can be reused with different objects.
+Objects will be each individual who will be using the class
+
+If we import these files in another code, then it becomes a module.
+
+COlumn, Scaffold, Container, etc are all classes and we call there constructors.
+
+Constructors return type is always the class name
+############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>      myOOP.dart   <<<<<<<<<<<<<<<<<<<<<<<
+
+class VisitorForm {
+	// variable or property
+	String name;
+	String gender;
+	int number;
+} //every new visitor will be given this form 
+
+// in this case, every new user will be an objects
+// creating a copy of this form for every user is known as instantiation
+
+void main(){
+	VisitorForm visitor1 = new VisitorForm(); //copy of the form created
+	var visitor2 = new VisitorForm(); //another copy of form created
+	//visitor1 and visitor2 are both the objects to the class
+	//using new is optional as of latest updates
+	
+	visitor1.mobile = 12345;
+	visitor1.gender = "male"; //this is a setter
+	visitor1.name = "gaurav";
+	print(visitor1.name); // this is an instance variable
+	print(visitor1.gender); // this is a getter
+	print(visitor1.number);
+	
+	visitor2.mobile = 67890; // this is an instance variable
+	visitor2.gender = "female";
+	visitor2.name = "sarah";
+	print(visitor2.mobile);  
+	print(visitor2.gender);
+	print(visitor2.name);
+	
+	// for now all these info will run on RAM
+	
+}
+############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>>>> constructor.dart <<<<<<<<<<<<<<<<<<<<<<<<
+
+class VisitorForm{
+	String name;
+	String gender;
+	int number;
+	
+	VisitorForm{(String name, String gender, int number)}{
+		this.name = name;
+		this.gender = gender;
+		this.number = number;
+	} //this function is a constructor and as soon as a new object is created then this function is always called.
+	
+	// the above code can be optimized to 
+	// VisitorForm(this.name, this.gender, this.number);
+	// this approach is known as syntactic sugar approach
+}
+
+void main(){
+	var visitor1 = new VisitorForm(
+		name: 'gaurav',
+		gender: 'male',
+		number: 12345
+	);
+	
+	var visitor2 = new VisitorForm(
+		name: 'sarah',
+		gender: "female",
+		number: 67890
+	);
+	
+	print(visitor2.name);
+	print(visitor1.name);
+}
+############################################################################################################################################
