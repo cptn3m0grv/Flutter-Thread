@@ -176,3 +176,14 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	We shall then add a geolocator package in order to use GPS sensor of our phone,
 	Using the geolocator package we shall get our location first and then show that location on map
 }
+
+[2020-08-19] Day 18 {
+	In this session we learnt about some more concepts of dart programming language i.e object oriented concepts,
+	We learnt about the Object Oriented Programming in Dart,
+	We began with learning about class which is just a reusable block of code and its instance is provided to every new object,
+	We then coded a basic class code and made its object,
+	We also learnt about getters and setters,
+	Then we learnt about a function which get's called as soon as a new object of a class is created,
+	A user can define this constructor as well but it is not mandatory,
+	Defining a constructor totally depends on use case to use
+}
