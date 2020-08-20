@@ -1,0 +1,62 @@
+Day 19
+
+############################################################################################################################################
+In dart programming language, it is a good practice to start class name with a CAPITAL Letter.
+
+Inheritance, as the name suggest, is the way to inherit features from parent class into the child class.
+
+Functions in a class is called a method.
+
+we can also override a method of parent class into the child class
+############################################################################################################################################
+>>>>>>>>>>>>        visitorForm.dart   <<<<<<<<<<<<<<<<
+class VisitorForm{
+	String name;
+	String gender;
+	String purpose;
+	int mobile;
+	
+	VisitorForm(this.gender, this.mobile, this.name,this.purpose);
+	
+}
+
+class JobForm extends VisitorForm{
+	// this class will also have the variable from parent class
+	// constructor is never inherited
+
+	String techSkills;
+	String score1;
+	
+	JobForm({this.techSkills, this.score1, gender, mobile, name, purpose}) : super(gender, mobile, name, purpose);
+	
+	void doSomething(){
+		print("Doing something.... for ${super.name}");
+	}
+}
+
+void main(){
+	VisitorForm visitor1 = new VisitorForm(
+    'male',
+    123,
+    'gaurav',
+    'flutter'
+	);
+	
+	print(visitor1.gender);
+	print(visitor1.mobile);
+	
+	
+	JobForm visitor2 = new JobForm(
+		techSkills: 'flutter',
+		score1: '12',
+		name: "sarah",
+		gender: "Female",
+		mobile: 4543,
+		purpose: "Job Interview"
+	);
+
+  visitor2.doSomething();
+}
+
+
+############################################################################################################################################
