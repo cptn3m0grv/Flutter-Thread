@@ -197,3 +197,16 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	We can also override the method of parent class in the child class,
 	Overriding is known as run-time polymorphism
 }
+
+[2020-08-25] Day 20{
+	In this session we learnt to navigate through different pages in flutter,
+	Also it Container Widget is not scrollable thus we also learnt to use listview builder,
+	We need to define routes to our other pages in MaterialApp itself,
+	"build" is responsible for creating widget tree in flutter,
+	We can either use "home" or "routes" in MaterialApp,
+	To do this we also have to write the initialRoute which is same as home key in MaterialApp,
+	Navigator function helps us to navigate through multiple screens in flutter,
+	Then we learnt about the ListView.builder - it creates infinite widgets by default,
+	This can be solved using itemCount key in the ListView,
+	We then integrated these concepts in a mobile application.
+}
