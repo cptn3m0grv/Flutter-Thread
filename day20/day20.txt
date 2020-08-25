@@ -1,0 +1,139 @@
+day20
+
+############################################################################################################################################
+> flutter create day20_nav
+
+In this class we will learn how to navigate between multiple pages in a mobile app.
+
+Creating a widget tree for our mobile application is called a build. This build is availaible in both stateful and stateless class.
+BuildContext is a datatype for variable named context.
+
+Routers are basically the name given to a view.
+Moving from one page to another in Mobile Application is known as navigation.
+
+We can not use "home" property and route property together in MaterialApp.
+
+We can also create a listbuilder instead of the static typical container we have been using until now.
+
+I have created another code for this purpose, though i will integrate both of the today's topic in one single app.
+############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>   main.dart   <<<<<<<<<<<<<<<<<<<<<<<<<<<
+import 'package:flutter/material.dart';
+
+void main(){
+	runApp(MaterialApp(
+		//home: HomePage(),
+		initialRoute: '/',
+		routes: {
+			'/': (context) => HomePage(),
+			'/secondPage': (context) => SecondPage(),
+			'/thirdPage': (context) => ThirdPage(),
+		},
+	));
+}
+
+class HomePage extends StatefulWidget{
+	@override
+	_HomePage createState() => _HomePage();
+}
+
+class _HomePage extends State<HomePage>{
+	@override
+	Widget build(BuildContext context){
+		return Scaffold(
+			appBar: AppBar(
+				title: Text("Home Page");
+			),
+			body: RaisedButton(
+				onPressed: () {
+					//print("Hello");
+					//Navigator.push(context, //MaterialPageRoute(builder: () {
+					//	SecondPage();
+					//}));
+					Navigator.pushNamed(context, '/secondPage');
+				},
+				child: Text("Click here to navigate to second page"),
+			),
+		);
+	}
+}
+
+class SecondPage extends StatefulWidget{
+	@override
+	_SecondPage createState() => _SecondPage();
+}
+
+class _SecondPage extends State<SecondPage>{
+	@override
+	Widget build(BuildContext context){
+		return Scaffold(
+			appBar: AppBar(
+				tile: 
+			),
+			body: Column(
+				children: <Widget>[
+					Text("List of features"),
+					RaisedButton(
+						onPressed: () {
+							print("Going to home....");
+							Navigator.pushNamed(context, '/thirdPage');
+						},
+						child: Text("To the third page."),
+					),
+				],
+			),
+		);
+	}
+}
+
+class ThirdPage extends StatelessWidget{
+	@override
+	Widget build(BuildContext context){
+		return Scaffold(
+			appBar: AppBar(
+				title: Text("Third Page"),
+			),
+		);
+	}
+}
+############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>>>    list.dart   <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+import 'package:flutter/material.dart';
+
+void main(){
+	runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget{
+	@override
+	_MyApp createState() => _MyApp();
+}
+
+class _MyApp extends State<MyApp>{
+	List<String> students = ['joy', 'don', 'joe'];
+	
+	@override
+	Widget build(BuildContext context){
+		return MaterialApp(
+			home: Scaffold(
+				appBar: AppBar(
+					title: Text("List"),
+				),
+				body: ListView.builder(
+					itemCount: students.length, // to create these many tiles
+					itemBuilder: (BuildContext context, int index) {
+						return Card(
+							child: ListTile(
+								title: Text(students[index]),
+								subtitle: Text("id"),
+								leading: Icon(Icons.ac_unit),
+								trailing: Text("..."),// we can also add a button here which will be incremental navigator.
+							), //by default infinite tiles are created
+						);
+					},
+				),
+			),
+		);
+	}
+}
+############################################################################################################################################
