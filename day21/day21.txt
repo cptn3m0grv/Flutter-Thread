@@ -1,0 +1,117 @@
+day21
+
+##############################################################################################################################################
+In this session we will learn about stateful widgets.
+
+To make our code cleaner, it is recommended to create a separate code file for each page of our mobile application.
+
+Stateful Widget give us a feature to change the data during runtime.
+
+There is a function called "initState" which is run everytime the app is run, this is by default empty though we can override it. This method is only availaible in stateful.
+
+Stateful widget knows about its lifecycle, from opening the page to closing (destroy) it.
+
+All these features are not availaible in stateless .
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>     main.dart  <<<<<<<<<<<<<<<<<<<<<
+
+import 'package:flutter/material.dart';
+import 'home.dart';
+import 'login.dart';
+import 'profile.dart';
+
+void main(){
+	runApp(MaterialApp(
+		theme: ThemeData.dark(),
+		initialRoute: '/',
+		routes: {
+			'/': (context) => MyHome(),
+			//'/profile': (context) => MyProfile(),
+			//'/login': (context) => MyLogin(),
+		},
+	));
+}
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>>    home.dart   <<<<<<<<<<<<<<<<<<<<<<<<
+
+import 'package:flutter/material.dart';
+
+class MyHome extends StatelessWidget{
+	@override
+	Widget build(BuildContext context){
+		return Scaffold(
+			appBar: AppBar(
+				title: Text('Stateful Demo day 21'),
+			),
+			body: Column(
+				children: <Widget>[
+					RaisedButton(
+						onPressed: () {
+							Navigator.pushNamed(context, '/profile');
+						},
+						child: Text("Go to profile page"),
+					),
+					RaisedButton(
+						onPressed: () {
+							Navigator.pushNamed(context, '/login');
+						},
+						child: Text("Go to login page"),
+					),
+				],
+			),
+		);
+	}
+}
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>>    profile.dart   <<<<<<<<<<<<<<<<<<<<<<<<
+
+import 'package:flutter/material.dart';
+
+class MyProfile extends StatefulWidget{
+	@override
+	_MyProfile createState() => _MyProfile();
+}
+
+class _MyProfile extends State<MyProfile>{
+	@override
+	void initState(){
+		super.initState();
+		print("Somebody entered this page"); // run everytime somebody enters this page.
+	}
+	
+	@override
+	void deactivate(){
+		super.deactivate();
+		print("logoff"); //only run when the page is closed
+	}
+
+	@override
+	Widget build(BuildContext context){
+		return Scaffold(
+			appBar: AppBar(
+				title: Text("Hello"),
+				),
+			),
+			body: RaisedButton(
+				onPressed: null,
+				child: Text("Something"),
+			),
+		);
+	}
+}
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>>    login.dart   <<<<<<<<<<<<<<<<<<<<<<<<
+
+import 'package:flutter/material.dart';
+
+class MyLogin extends StatelessWidget{
+	@override
+	Widget build(BuildContext context){
+		return Scaffold(
+			appBar: AppBar(
+				title: Text("Login Page"),
+			),
+		);
+	}
+}
+##############################################################################################################################################
