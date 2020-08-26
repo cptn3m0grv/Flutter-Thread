@@ -210,3 +210,12 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	This can be solved using itemCount key in the ListView,
 	We then integrated these concepts in a mobile application.
 }
+
+[2020-08-26] Day 21{
+	In this session we learnt some more concepts of Stateful Widget in flutter,
+	We actually learnt when and where should we go for Stateful Widget,
+	Though we have already studied about StatefulWidget but in this we learnt about few more concepts,
+	Stateful widget have the feature of changing data in its runtime unline the stateless widget,
+	But Stateful widget is smart and knows about its complete lifecycle,
+	It provides us function line "initState()" and "deactivate",
+}
