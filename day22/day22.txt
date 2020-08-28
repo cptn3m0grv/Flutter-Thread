@@ -1,0 +1,95 @@
+day22
+
+##############################################################################################################################################
+> flutter create day22_snackbar
+
+Stateless are comparatively faster than Stateful , because it is immutable.
+
+Widget tree is stores in the variable called (context).
+
+"of()" method describes the location of widget.
+
+Scaffold.of(context) then prints a lot of data about the parent layer.
+	Scaffold.of(context).hasFloatingButton; // boolean returned
+	Scaffold.of(context).appBarHeight; // double returned
+	
+SnackBar is function that created a pop-up at the bottom of the screen. Also read the docs for more features.
+
+Programming languages that support a function as an argument inside a function is known as functional programming. Scala is one of them as well.
+
+We can convert a string to double using double.parse();
+
+Exception as the name suggest is something that is not usual or not known to as. Controlling this process is known as exception handling.
+
+We have to place such exceptions inside try/catch blocks.
+Whatever is written in finally{} block, it will also run. Even if the code crashes.
+Dart also has "on" keyword which acts like else if.
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>     main.dart   <<<<<<<<<<<<<<<<<<
+import 'package:flutter/material.dart';
+
+void main() {
+	runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+	@override
+	Widget build(BuildContext context){
+		return MaterialApp(
+			theme: ThemeData.dark(),
+			home: Scaffold(
+				appBar: AppBar(
+					title: Text("Day 22 SnackBar"),
+					action: <Widget>[
+						Icon(Icons.ac_unit),
+					],
+				),
+				body: MyAppBody(), // creating a stateful layer on stateless layer
+			),
+		);
+	}
+}
+
+class MyAppBody extends StatefulWidget{
+	@override
+	_MyAppBody createState() => _MyAppBody();
+}
+
+class _MyAppBody extends State<MyAppBody>{
+	@override
+	Widget build(BuildContext context){
+		return Center(
+			child: Container(
+				child: RaisedButton(
+					onPressed: () {
+						//var p = Scaffold.of(context).hasAppBar;
+						Scaffold.of(context).showSnackBar(
+							SnackBar(
+								content: Text("Hello"),
+								duration: Duration(seconds: 10),
+							),
+						);
+					},
+					child: Text("Hello body"),
+				),
+			),
+		);
+	}
+}
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>>>   expHand.dart   <<<<<<<<<<<<<<<<<<<<<<<<<<<
+void main(){
+	var x = "4.2";
+	var y;
+	try{
+		y = double.parse(x);
+		print(y+1);
+	}on IntergerDivisionByZeroException{
+		print("else if...");
+	}catch(e){
+		print(e);
+	}finally{
+		print("This is always run");
+	}
+}
+##############################################################################################################################################
