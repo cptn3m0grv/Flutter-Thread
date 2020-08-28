@@ -219,3 +219,17 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	But Stateful widget is smart and knows about its complete lifecycle,
 	It provides us function line "initState()" and "deactivate",
 }
+
+[2020-08-27] Day 22{
+	In this session we learnt about "of" function and exception handling,
+	We used "of" function to create a SnackBar at the bottom of the page whenever a button is pressed,
+	of(context) can gather info regarding the parent of the function used,
+	We also learnt  about SnackBar(),
+	SnackBar is the popup that appears at the bottom of page for a certain duration whenever an event is called,
+	It takes the width of scaffold widget until declared,
+	There are much more functionalities of a SnackBar,
+	We then learnt about the concept of exception handling in dart,
+	Exception handling is used to handle run time errors which even our IDE cannot detect,
+	One such example of this could be divisionByZero error and much more,
+	It is always suggested to keep our uncertain code inside the try-catch blocks so that the whole app doesn't break whenever there is an error.
+}
