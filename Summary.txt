@@ -243,4 +243,7 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	With such services a developer shall not worry about developing the complete backend but instead BaaS can be used,
 	We then learnt the difference between app level file and project level file,
 	We also created a flutter project providing our organization name using --org tag,
+	We then went step by step adding firebase details in our application,
+	We manipulated application files so that our application can communicate to these services over a network,
+	We also debugged few challenges during the process,
 }
