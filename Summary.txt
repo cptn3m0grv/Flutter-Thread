@@ -233,3 +233,14 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	One such example of this could be divisionByZero error and much more,
 	It is always suggested to keep our uncertain code inside the try-catch blocks so that the whole app doesn't break whenever there is an error.
 }
+
+[2020-08-31] Day 23{
+	In this session we learnt about firebase service by google and learnt to integrate our mobile application with it,
+	We shall first understand what is firebase and why we need it,
+	Firebase is an umbrella of services providing multiple services like database or API etc,
+	Cloud platforms like AWS and GCP provide multiple services for various purpose,
+	Lambda service by AWS is an example of Faas or FireStore by google is an example of Backend as a service,
+	With such services a developer shall not worry about developing the complete backend but instead BaaS can be used,
+	We then learnt the difference between app level file and project level file,
+	We also created a flutter project providing our organization name using --org tag,
+}
