@@ -1,0 +1,98 @@
+Day 23
+
+##############################################################################################################################################
+In this session we start learning about firebase, by google.
+> flutter create -h  ( we will not be creating an app the way we create usually)
+
+> flutter create --org com.grvgyl --project-name day23_firebase day23_firebase
+(give domain name in reverse)
+we have to use organization and appname and foldername respectively
+
+--> "android/app/build_gradle" file maintains our applicationId and applicationName
+ 
+We need a file to store data, but we need a program to create this file. We call them database server programs
+These database are of various types.
+A table is created in a typical database with various fields/columns that holds data.
+Social Networking sites like facebook use multiple databases to store their user data.
+
+Cloud Platforms like AWS, GCP has managed services which are ofter known as DataBase As a Service, and also some object storage services like S3 etc.
+Services like lambda and cloud functions are function as a service.
+
+Cloud platforms also provide backend as a service. FireBase is one such example which maintains complete backend. It contains database, Faas, etc.
+
+DataBase as a Service by FireBase is known as FireStore.
+It is a product of GCP cloud.
+
+Go to firebase.google.com --> Go to console
+login to the google account
+
+***********   IMPORTANT ****************
+--> click on "add project"(you have to create a project to use any service of GCP, not related to flutter project)
+It is free for certain limit.
+--> enable or disable google analytics according to your wish
+--> Google analytics account if selected previous option
+click on create project (it takes a while to create a project)
+--> select the option for android app
+   
+   --> package name : android/app/build.gradle --> applicationId 
+	     (register app)
+		 
+    
+	--> download google-services.json and copy it into android/app 
+	folder
+	
+	--> we need to provide sdk to dart so that it our app can connect to gcp and its services
+	thus we need to go to the project level gradle file (android/gradle/build.gradle) and paste the following under dependencies{
+		...
+		classpath 'com.google.gms:goolgle-services:4.3.3'
+	}
+	and nothing else if you are working in flutter
+	
+	--> Now go to app level app level gradle file(android/app/build.gradle) and copy the following under 
+	dependencies{
+		...
+		implementation 'com.google.firebase:firebase-analytics:17.5.0'
+	}
+	
+	apply plugin: 'com.google.gms.google-services'
+	
+	--> We might need to change SDK version for android to 21 in app level build gradle file
+	
+*******************  IMPORTANT END *********************
+
+--> run the app to verify installation (rerun the app)
+
+we have to install some more libraries to connect dart with google
+##############################################################################################################################################
+************  Go to pub.dev  ************
+search for firestore
+and select "cloud_firestore" by google with 99% popularity
+>>>>>>>>>>>>>>>   pubspec.yaml   <<<<<<<<<<<<<<<<<
+dependencies:
+	flutter:
+		sdk:
+		- cloud_firestore: ^0.14.0+2
+<<<<<<<<<<<<<<<<<
+Restart the IDE
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>>   main.dart   <<<<<<<<<<<<
+import 'package:flutter/material.dart' ;
+
+void main(){
+	runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+	@override
+	Widget build(BuildContext context){
+		return MaterialApp(
+			home: Scaffold(
+				appBar: AppBar(
+					title: Text("Firebase App"),
+				),
+				body: Text("Hello"),
+			),
+		);
+	}
+}
+##############################################################################################################################################
