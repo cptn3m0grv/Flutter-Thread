@@ -1,0 +1,91 @@
+Day 24
+
+##############################################################################################################################################
+The best thind about backend as a service is that the developer need not worry about setting up the backend.
+
+We have already done the necessary configuration in last session, i.e day23.
+
+Today we will use Cloud Firestore, which provides database as a service
+****  IMPORTANT ***
+Create databse
+      ---> Click next, i.e create in test mode
+	  ---> Select region, in this case asia-south-1 
+	       (select closest region to optimize the app in terms of latency)[ Once selected we cannot change this is future]
+	 Creating/Provisioning of database begins.
+	 --> Database instance would be launched
+************************
+'+'Start Collection
+	--> Collection ID = students (anything)
+	--> Document ID --> Auto-Id 
+	    Field	Type	Value
+		Name	String	['john','jfh']
+**************************
+But we don't want to add data manually, we want to intergrate with our application and want the data to be dynamically added.
+We have already configured our application with firebase application. So we need to do manual data entry
+##############################################################################################################################################
+Go to pub.dev, look for firebase_core 0.5.0
+>>>>>>>>>>>>>  pubspec.yaml  <<<<<<<<<<<<<<
+dependencies:
+	flutter:
+		- firebase_core: 0.5.0 (add this also)
+<<<<<<<<<<<<<<<<<<<<
+Restart the IDE
+
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>     main.dart   <<<<<<<<<<<<<<<<<<<<<<
+import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+// Look for Day23 Notes if you haven't already
+
+
+void main(){
+	WidgetsFlutterBinding.ensureInitialized(); //one time initialization, has to be written first because it initilizes some plugins
+	Firebase.initializeApp(); //one time initialization
+	runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+
+	// create a reference to the database
+	var fsConnect = FirebaseFirestore.instance;	
+
+	myGet() async{
+		var d = await fsconnect.collection("students").get();
+		// this contains the name of documents not there data
+		for(var i in d.docs){
+			print(i);
+		}//this will get all the data
+	}
+
+	@override
+	Widget build(BuildContext context){		
+		return MaterialApp(
+			home: Scaffold(
+				appBar: AppBar(
+					title: Text("Firebase day 23/24"),
+				),
+				body: Column(
+					RaisedButton(
+						child: Text("Add Data"),
+						onPressed: (){
+							fsConnect.collection(students).add({
+								'name': 'krish',
+								'title': 'CEO',
+							}); //this name is case sensitive
+							// a unique id will be creted and data will be added to it
+							print("hello");
+						}
+					),
+					RaisedButton(
+						child: Text("Get Data"),
+						onPressed(){
+							myGet();
+						},
+					),
+				),
+			),
+		);
+	}
+}
+##############################################################################################################################################
