@@ -247,3 +247,13 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	We manipulated application files so that our application can communicate to these services over a network,
 	We also debugged few challenges during the process,
 }
+
+[2020-09-01] Day 24{
+	In this session we continued learning about firebase and firestore,
+	We used the firestore database as a service to create our own database ans access it from our mobile application,
+	We first creates a database instance and then created a collection in it,
+	A collection is like a table in a database and then we create document and data,
+	We then installed the required packages in dart which include cloud_firebase and firebase_core,
+	We then understood how we can write and read data from our mobile application to the database in the google cloud,
+	We also used the concept of async and await in dart to get the data from the internet to our application
+}
