@@ -1,0 +1,197 @@
+day 25
+##############################################################################################################################################
+We will be taking a look at another service by firebase, and this is called authentication.
+Authentication, as the name suggest is the process to authenticate a particular user after he/she enters the credentials.
+Credentials are taken from the input screen and compared with the database.
+We can also provide the users with an option to signup and login both.
+We have two options, either maintain own database, or create an OAuth app through which users can log in using facebook or google.
+
+If we are providing our users a feature to register then we will have to maintain our own database.
+
+--> Go to firebase-select authentication 
+	It has a list of multiple providers including google.
+--> But to maintain our own database, we shall use "email-password" option. We have to enable the provider we want to use.
+	It maintains the users in the "Users" tab, we can also add users manually(good for internal organization purposes)
+	
+------
+We can create a screen directory to manage multiple screens. We have to import a plugin for this.
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>   pubspec.yaml <<<<<<<<<<<<<<<<<<<<<<<<<<<
+dependencies:
+	flutter:
+		firebase_auth: ^0.18.0+1
+
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>     main.dart   <<<<<<<<<<<<<<<<<<<<<<
+import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'home.dart';
+import 'reg.dart';
+import 'login.dart';
+// Look for Day23 Notes if you haven't already
+
+
+void main(){
+	WidgetsFlutterBinding.ensureInitialized();
+	Firebase.initializeApp(); 
+	runApp(MaterialApp(
+		initialRoute: "/",
+		route: {
+			"/" : (context) => MyHome(),
+			"/registeration": (context) => RegMe(),
+			"/login": (context) => LogMe(),
+			"/chat": (context) => MyChat(),
+		},
+	));
+}
+
+
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>    home.dart   <<<<<<<<<<<<<<<<<<<<<<<<<<<
+import 'package:flutter/material.dart';
+
+class MyHome extends StatelessWidget{
+	@override
+	Widget build(BuildContext context){
+		return Scaffold(
+			appBar: AppBar(
+				title: Text("Home"),
+			),
+			body: Column(
+				children: <Widget>[
+					RaisedButton(
+						child: Text("Register"),
+						onPressed: (){
+							Navigator.pushNamed(context, "/registeration");
+						},
+					),
+					RaisedButton(
+						child: Text("Login"),
+						onPressed: (){
+							Navigator.pushNamed(context, "/login");
+						},
+					),
+				],
+			),
+		);
+	}
+}
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>   reg.dart  <<<<<<<<<<<<<<<<<<<<<<<<<<
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+class RegMe extends StatefulWidget{
+	@override
+	_RegMe createState() => _RegMe();
+}
+
+class _RegMe extends State<RegMe>{
+	String email;
+	String password;
+	var authc = FirebaseAuth.instance;
+	@override
+	Widget build(BuildContext context){
+		return Scaffold(
+			appBar: AppBar(
+				title: Text("Regiter Here"),
+			),
+			body: Column(
+				children: <Widget>[
+					TextField(
+						onChanged: (value) {
+							email = value;
+						},
+					),
+					TextField(
+						onChanged: (value) {
+							password = value;
+						},
+					),
+					RaisedButton(
+						child: Text("Click Here"),
+						onPressed: () async{
+							print(email);
+							print(pass);
+							var user = await authc.createUserWithEmailAndPassword(email: email, password: password);
+							print(user);
+							if(user!=null){
+								Navigator.pushNamed(context, "/login");
+							}
+						},
+					),
+				],
+			),
+		);
+	}
+}
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>   login.dart  <<<<<<<<<<<<<<<<<<<<<<<<<<
+import 'package:flutter/material.dart';
+
+class LogMe extends StatefulWidget{
+	@override
+	_LogMe createState() => _LogMe();
+}
+
+class _LogMe extends State<LogMe>{
+	String email;
+	String password;
+	var authc = FirebaseAuth.instance;
+	@override
+	Widget build(BuildContext context){
+		return Scaffold(
+			appBar: AppBar(
+				title: Text("Regiter Here"),
+			),
+			body: Column(
+				children: <Widget>[
+					TextField(
+						onChanged: (value) {
+							email = value;
+						},
+					),
+					TextField(
+						onChanged: (value) {
+							password = value;
+						},
+					),
+					RaisedButton(
+						child: Text("Click Here"),
+						onPressed: () async{
+							print(email);
+							print(pass);
+							var signIn = await authc.signInWithEmailAndPassword(email: email, password: password);
+							print(signIn);
+							if(signIn !-null){
+							
+							}
+						},
+					),
+				],
+			),
+		);
+	}
+}
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>   chat.dart  <<<<<<<<<<<<<<<<<<<<<<<<<<
+import 'package:flutter/material.dart';
+
+class MyChat extends StatefulWidget{
+	@override
+	_MyChat createState() => _MyChat();
+}
+
+class _MyChat extends State<MyChat>{
+	@override
+	Widget build(BuildContext context){
+		return Scaffold(
+			appBar: AppBar(
+				title: Text("Chat"),
+			),
+			body: Text("chat here"),			
+		);
+	}
+}
+
+##############################################################################################################################################
