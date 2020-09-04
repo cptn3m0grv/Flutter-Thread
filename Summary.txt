@@ -257,3 +257,15 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	We then understood how we can write and read data from our mobile application to the database in the google cloud,
 	We also used the concept of async and await in dart to get the data from the internet to our application
 }
+
+[2020-09-03] Day 25{
+	In this session we used another service by firebase - named "authentication",
+	Authentication as the name suggests is the service through which we can authenticate users,
+	Firebase provide us multiple providers including google login - facebook login etc,
+	We can also maintain our own database in this which we have to select through email and password option,
+	It provides us a secure way to authenticate user, 
+	We can create and retrieve user credentials using just a tap of button from our mobile phone,
+	We then implemented this concept in a multi page application,
+	This application provides different pages for registering and login,
+	And after login user is also redirected to some main page,
+}
