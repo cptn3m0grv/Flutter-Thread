@@ -269,3 +269,14 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	This application provides different pages for registering and login,
 	And after login user is also redirected to some main page,
 }
+
+[2020-09-04]{
+	In this session we implemented the knowledge of authentication and built a basic sign up and login page,
+	We first created a home page which gives an option to the user to either register or login using an existing account,
+	We then redirected the user to respective screen,
+	We also learnt about a new button widget called MaterialButton,
+	We also learnt to provide custom keyboards while filling the login or register form,
+	We then redirected the users to the main screen after they have logged in,
+	We then added a button through which a user can retrieve his info from the database,
+	We also created a logout button which takes user to the home screen again.
+}
