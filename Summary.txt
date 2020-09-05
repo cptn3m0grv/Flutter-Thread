@@ -270,7 +270,7 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	And after login user is also redirected to some main page,
 }
 
-[2020-09-04]{
+[2020-09-04] Day 26{ 
 	In this session we implemented the knowledge of authentication and built a basic sign up and login page,
 	We first created a home page which gives an option to the user to either register or login using an existing account,
 	We then redirected the user to respective screen,
