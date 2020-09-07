@@ -1,0 +1,388 @@
+Day 27
+
+##############################################################################################################################################
+Continuing the app created on the day 26.
+Loading screen/progress bar while performing on network task.
+Also we can create a data streaming feature. We store the data in a database first and then retrieve it whenever needed.
+We will have to decide between RDBMS and NOSQL type of database.
+Firebase also provides us a feature to create real time streaming.
+We print the data as soon as a new message arrives.
+
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>  pubspec.yaml <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+dependencies:
+	modal_progress_hub: ^0.1.3
+
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>>>  main.dart  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'home.dart';
+import 'reg.dart';
+import 'login.dart';
+import 'chat.dart';
+
+void main() async{
+	WidgetFlutterBinding.ensureInitialize();
+	await Firebase.initializeApp();
+	runApp(MaterialApp(
+		initialRoutes: "/",
+		routes: {
+			"/": (context) => MyHome();
+			"/reg": (context) => MyReg();
+			"/login": (context) => MyLogin();
+			"/chat": (context) => MyChat();
+		},
+	)); 
+}
+
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>> home.dart <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+import 'package:flutter/material.dart';
+
+class MyHome extends StatefulWidget{
+	@override
+	_MyHome createState() => _MyHome();
+}
+
+class _MyHome extends State<MyHome>{
+	@override
+	Widget build(BuildContext context){
+		return Scaffold(
+			appBar: AppBar(
+				title: Text("Home"),
+			),
+			body: Center(
+				child: Container(
+					child: Column(
+						mainAxisAlignment: MainAxisAlignment.center,
+						children: <Widget>[
+							Material(
+								color: Colors.lightBlueAccent,
+								borderRadius: BorderRadius.circular(10),
+								elevation: 10,
+								child: MaterialButton(
+									minWidth: 200,
+									height: 40,
+									child: Text("Register"),
+									onPressed: () {
+										print("registration");
+										Navigator.pushNamed(context, "/reg");
+									},
+								),
+							),
+							SizedBox(
+								height: 40,
+							),
+							Material(
+								color: Colors.lightBlueAccent,
+								borderRadius: BorderRadius.circular(10),
+								elevation: 10,
+								child: MaterialButton(
+									minWidth: 200,
+									height: 40,
+									child: Text("Login"),
+									onPressed: () {
+										print("login");
+										Navigator.pushNamed(context, "/login");
+									},
+								),
+							),
+						],
+					),	
+				),
+			),
+		);
+	}
+}
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>> reg.dart <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+class MyReg extends StatefulWidget{
+	@override
+	_MyReg createState() => _MyReg();
+}
+
+class _MyReg extends State<MyReg>{
+
+	var authC = FirebaseAuth.instance;
+	
+	String email;
+	String password;
+	@override
+	Widget build(BuildContext context){
+		return Scaffold(
+			appBar: AppBar(
+				title: Text("Registration"),
+			),
+			body: Center(
+				child: Container(
+					width: 300,
+					child: Column(
+						mainAxisAlignment: MainAxisAlignment.center,
+						children: <Widget>[
+							TextField(
+								keyboardType: TextInputType.emailAddress,
+								onChanged: (value) {
+									print("email");
+									email = value;
+								},
+								decoration: InputDecoration(
+									hintText: "Enter email",
+									border: OutlineInputBorder(
+										borderRadius: BorderRadius.circular(20),
+									),
+								),
+							),
+							SizedBox(
+								height: 40,
+							),
+							TextField(
+								obscureText: true,
+								onChanged: (value) {
+									print("password");
+									password = value;
+								},
+								decoration: InputDecoration(
+									hintText: "Enter password",
+									border: OutlineInputBorder(
+										borderRadius: BorderRadius.circular(20),
+									),
+								),
+							),
+							SizedBox(
+								height: 40,
+							),
+							Material(
+								color: Colors.lightBlueAccent,
+								borderRadius: BorderRadius.circular(10),
+								elevation: 10,
+								child: MaterialButton(
+									minWidth: 200,
+									height: 40,
+									child: Text("Submit"),
+									onPressed: () async {
+										try{
+											var user = await authC.createUserWithEmailAndPassword(
+												email: email,
+												password: password,
+											);
+											print(user);
+											print(email);
+											print(password);
+											if(user.additionalUserInfo.isNewUser){
+												Navigator.pushNamed(context, "/chat");
+											}
+										}catch(e){
+											print(e);
+										}
+									},
+								),
+							),
+						],
+					),
+				),
+			),
+		);
+	}
+}
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>> login.dart  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:modal_progress_hub/modal_progress_hub.dart;
+
+class MyLogin extends StatefulWidget{
+	@override
+	_MyLogin createState() => _MyLogin();
+}
+
+class _MyLogin extends State<MyLogin>{
+	var authC = FirebaseAuth.instance;
+	
+	String email;
+	String password;
+	bool showSpin = false;
+		
+	@override
+	Widget build(BuildContext context){
+		return Scaffold(
+			appBar: AppBar(
+				title: Text("Login"),
+			),
+			body: ModalProgessHUD(
+				inAsyncCall: showSpin, //by default the value is false
+				child: Center(
+					child: Container(
+						width: 300,
+						child: Column(
+							mainAxisAlignment: MainAxisAlignment.center,
+							children: <Widget>[
+								TextField(
+									keyboardType: TextInputType.emailAddress,
+									onChanged: (value) {
+										print("email");
+										email = value;
+									},
+									decoration: InputDecoration(
+										hintText: "Enter email",
+										border: OutlineInputBorder(
+											borderRadius: BorderRadius.circular(20),
+										),
+									),
+								),
+								SizedBox(
+									height: 40,
+								),
+								TextField(
+									obscureText: true,
+									onChanged: (value) {
+										print("password");
+										password = value;
+									},
+									decoration: InputDecoration(
+										hintText: "Enter password",
+										border: OutlineInputBorder(
+											borderRadius: BorderRadius.circular(20),
+										),
+									),
+								),
+								SizedBox(
+									height: 40,
+								),
+								Material(
+									color: Colors.lightBlueAccent,
+									borderRadius: BorderRadius.circular(10),
+									elevation: 10,
+									child: MaterialButton(
+										minWidth: 200,
+										height: 40,
+										child: Text("Submit"),
+										onPressed: () async {
+											setState(() {
+												showSpin = true;
+											});	
+											try{
+												var userSignIn = await authc.sighInWithEmailAndPassword(
+													email: email,
+													password: password
+												);
+												
+												if(!userSignIn.additionalUserInfo.isNewUser){
+													Navigator.pushNamed(context, "/chat");
+												}
+											}catch(e){
+												print(e);
+											}
+										},
+									),
+								),
+							],
+						),
+					),
+				),
+			),
+		);
+	}
+}
+
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>> chat.dart  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+class MyChat extends StatefulWidget{
+	@override
+	_MyChat createState() => _MyChat();
+}
+
+class _MyChat extends State<MyChat>{
+	String msg;
+	var fs = FirebaseFireStore.instance;
+	
+	getLiveMessage() async{
+		await for(var snapS in fs.collection("chat").snapshots()){
+			for(var doc in snapS.docs){
+				print(doc.data());
+			}
+		}
+		
+	}
+	
+	@override
+	void initState(){
+		print("Landed on chat page");
+		super.initState();
+	}
+	
+	var authC = FirebaseAuth.instance;
+		
+	@override
+	Widget build(BuildContext context){
+		return Scaffold(
+			appBar: AppBar(
+				title: Text("Chat"),
+				actions: <Widget>[
+					IconButton(
+						icon: Icon(Icons.close),
+						onPressed: () async {
+							print("log out");
+							await authC.signOut();
+							Navigator.pushNamed(context, "/login");
+						},
+					),
+				],
+			),
+			body: Center(
+				child: Container(
+					child: Column(
+						children: <Widget>[
+							TextField(
+								onChanged: (value){
+									msg = value;
+								}
+							),
+							FlatButton(
+								child: Text("Send Message"),
+								onPressed: () async{
+									await fs.collection("chat").add(
+										"text": msg,
+										"sender": authc.currentUser.email,
+									);
+								},
+							),
+							FlatButton(
+								child: Text("Get message"),
+								onPressed: () {//async{
+									//var msgdoc = await //fs.collection("chat").get();
+									//for(var i in msgdoc.docs){
+									//	print(i.data());
+									//}
+									getLiveMessage();
+								},
+							),
+							RaisedButton(
+								onPressed: () async{
+									try{
+										var user = await authC.currentUser;
+										print(user.email);
+									}catch(e){
+										print(e);
+									}
+								},
+								child: Text("Who am I"),
+							),
+						],
+					),
+				),
+			),
+		);
+	}
+}
+##############################################################################################################################################
