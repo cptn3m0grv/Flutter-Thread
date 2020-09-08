@@ -280,3 +280,14 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	We then added a button through which a user can retrieve his info from the database,
 	We also created a logout button which takes user to the home screen again.
 }
+
+[2020-09-07] Day 27{
+	In this session we learnt about data streaming and creating a loading page,
+	While we register or login - it takes time to login,
+	Till that time we show a loading icon which will be shown as soon as the submit/login/register button is pressed until the user is redirected to the next page,
+	For this we need to install a plugin called modal_progress_hub,
+	We then learnt to stream data from over the network,
+	Till now we created a button which will get us data when pressed this is a manual process,
+	So we wait for the new data to arrive and as soon as this happens the message will automatically be shown,
+	This process is called subscription and we implemented this with the help of snapshots feature provided by firebase.
+}
