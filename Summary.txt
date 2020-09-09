@@ -291,3 +291,15 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	So we wait for the new data to arrive and as soon as this happens the message will automatically be shown,
 	This process is called subscription and we implemented this with the help of snapshots feature provided by firebase.
 }
+
+[2020-09-08] Day 28{
+	In this session we learnt about StreamBuilder and added some basic dart programmin features in our chat application,
+	We also learnt about controllers in flutter,
+	We created a text controller which will clear the textfield as soon as the send message button is pressed,
+	We also used stream builder to get live data from the database and append it to a dart list,
+	Then as soon as the send button is pressed the new message is shown just like in other chat applications,
+	Streambuilder uses two important features to provide us live data,
+	builder helps us build widget as the new data arrives,
+	stream helps acts as collection subscription,
+	We then implemented all these conepts in our chat application
+}
