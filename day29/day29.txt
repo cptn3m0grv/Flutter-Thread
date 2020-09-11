@@ -1,0 +1,111 @@
+Day 29
+
+##############################################################################################################################################
+Today we will be creating an application to access camera of out mobile phone.
+> flutter create day29_camera
+
+Go to pub.dev: image_picker(0.6.7+7)
+
+Ternary operators can be used to make if else conditions shorter 
+Syntax--> (condition) ? (if true) : (if condition is not true)
+
+We can also integrate this code in our chat application that we have building till now.
+
+*****
+We can go to android studio --> AVD manager --> Device Edit settings --> Show advances settings --> camera --> change the requirements accordingly.
+******
+
+We can connect the camera of laptop to our virtual mobile to click real life pictures instead of using pre-built scenes.
+
+
+Google storage is the service used by google drive to store data, till now we used firestore to store data, but we can also store images and videos in Firebase Storage.
+
+We can create the object storage,
+--> copy the rules provided.
+
+We can store pdf, images, videos any kind of data.
+Folders are known as buckets in cloud storage.
+
+In this app we will be upload the images to the cloud after clicking them through this app. We will be using firebase cloud for the same.
+
+Go to pub.dev
+----> firebase_storage : 4.0.0
+
+We need to upload roles of cloud storage.
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>> pubspec.yaml <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+dependencies:
+	image_picker: ^0.6.7+7
+	firebase_storage: ^4.0.0
+	
+	
+##############################################################################################################################################
+>>>>>>>>>>>>>>>>>>>>>    main.dart  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart.io';
+import 'package:firebase_storage/firebase_storage.dart';
+
+void main(){
+	runApp(MyCamera());
+}
+
+class MyCamera extends StatefulWidget{
+	@override
+	_MyCamera createState() => _MyCamera();
+}
+
+class _MyCamera extends State<MyCamera>{
+	var fbStorage; 
+	File imgPath;
+	var imgURL;
+	
+	snapHere() async{
+		var picker = ImagePicker();
+		//await picker.getImage(
+		//	source: ImageSource.gallery
+		//);
+		var imgHere = await picker.getImage(
+			source: ImageSource.camera,
+			maxWidth: 200,
+			maxHeight: 200,
+		);
+		//print(imgHere);
+		setState(() {
+			imgPath = File(imgHere.path);
+		});
+		fbStorage = FirebaseStorage.instance.ref().child("myimages").child("my.jpeg");//child contains the folder name
+		print("Snap");
+		fbStorage.putFile(imgPath);
+		setState(() {
+			imgURL = await fbStorage.getDownloadURL();
+		});
+	}
+
+	@override
+	Widget build(BuildContext context){
+		return Scaffold(
+			floatingActionButton: FloatingActionButton(
+				child: Icon(Icon.add_a_photo),
+				onPressed: snapHere,
+			),
+			appBar: AppBar(
+				title: Text("Camera"),
+				actions: <Widget>[
+					CircleAvatar(
+						backgroundImage: imgURL == null ? someotherImagehere : NetworkImage(imgURL),
+					),
+				],
+			),
+			body: Container(
+				width: 200,
+				height: 200,
+				color: Colors.amberAccent,
+				child: imagefilepath == NULL ? Text("Select your image) : Image.file(imgPath),
+			),
+		);
+	}
+}
+##############################################################################################################################################
+
+##############################################################################################################################################

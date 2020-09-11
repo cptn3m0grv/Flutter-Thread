@@ -303,3 +303,17 @@ This repo has the flutter codes from the fourth day of my Flutter training,
 	stream helps acts as collection subscription,
 	We then implemented all these conepts in our chat application
 }
+
+[2020-09-10] Day 29{
+	In this session we learnt to use mobile camera from our application and created an image picker,
+	For this we requires a plugin called image_picker,
+	Since capturing/picking image is a future event - we should place it in async-await function,
+	There are many ways to getImage in image_picker module apart from camera,
+	image_picker module also provides us the path of the image in the androic device,
+	Since the AVD doesn't have its own camera - we can either use our laptop camera to capture images or use pre-build scenes,
+	We then displayes the captures image on our stateful mobile screen,
+	We then uploaded the captured image to the cloud,
+	The object storage service is provided by Firebase and thus can be used to use the same,
+	We just need to pass the image to a function which uploads it to the cloud,
+	It is also easy to get the image from the cloud and display it on our mobile application
+}
