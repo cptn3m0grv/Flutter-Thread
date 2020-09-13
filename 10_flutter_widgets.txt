@@ -1,0 +1,11 @@
+FLUTTER WIDGETS
+
+--> Safearea
+--> Wrap
+--> RickText
+--> ClipRRect
+--> MediaQuery
+--> FutureBuilder
+--> Flexible
+--> SizeBox
+--> Align
